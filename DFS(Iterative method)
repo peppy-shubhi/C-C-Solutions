@@ -4,7 +4,7 @@ using namespace std;
 int visited[10];
 vector<int>adj[10];
 stack<int>s;
-int bfs(int v)
+int dfs(int v)
 {
 	int i,x;
 	s.push(v);
@@ -38,7 +38,12 @@ int main() {
 		adj[x].push_back(y);
 	}
 	cin>>v;
-	bfs(v);
+	dfs(v);
+	for(i=0;i<n;i++)
+	{
+		if(visited[i]==0)
+		dfs(i);
+	}
 	
 	return 0;
 }

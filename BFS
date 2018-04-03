@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+vector<int> adj[100000];
+int visited[100000];
+queue<int>q;
+void bfs(int v)
+{
+	unsigned int i,z;
+	q.push(v);
+	
+	while(!q.empty())
+	{
+		z=q.front();
+	
+		for(i=0;i<adj[z].size();i++)
+		{
+			if(visited[adj[z][i]]==0)
+			{
+				
+				
+				q.push(adj[z][i]);
+				
+			}
+		}
+			
+		q.pop();
+		if(visited[z]==0)
+		{
+			cout<<z<<" ";
+			visited[z]=1;
+		}
+		
+		
+	}
+	
+}
+
+int main() {
+	int n,i,v,a,b,e;
+	cin>>n>>e;
+	while(e--)
+	{
+		cin>>a>>b;
+		adj[a].push_back(b);
+	}
+	cin>>v;
+	bfs(v);
+	
+	return 0;
+}

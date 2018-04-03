@@ -45,6 +45,11 @@ int main() {
 	}
 	cin>>v;
 	bfs(v);
+	for(i=0;i<n;i++)
+	{
+		if(visited[i]==0)
+		bfs(i);
+	}
 	
 	return 0;
 }

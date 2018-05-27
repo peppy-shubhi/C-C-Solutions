@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int level[100],visited[100];
+vector<int> adj[100];
+queue<int>q;
+int bfs(int v)
+{
+	int i,s;
+	q.push(v);
+	visited[v]=1;
+	level[v]=0;
+	while(!q.empty())
+	{
+	//	cout<<"&&&&"<<endl;
+		s=q.front();
+		
+		for(i=0;i<adj[s].size();i++)
+		{
+		//	cout<<"%%%%%%"<<endl;
+			if(visited[adj[s][i]]==0)
+			{
+				q.push(adj[s][i]);
+				visited[adj[s][i]]=1;
+				level[adj[s][i]]=level[s]+1;
+			}
+			
+		}
+		q.pop();
+		
+		
+	}
+	return 0;
+	
+	
+	
+}
+int main()
+{
+	int i,j,k,a,b,n,e,l,count=0;;
+	cin>>n>>e>>l;
+	for(i=0;i<n;i++)
+	{
+		cin>>a>>b;
+		adj[a].push_back(b);
+		adj[b].push_back(a);
+	}
+	bfs(0);
+	for(i=0;i<n;i++)
+	{
+		if(level[i]==l)
+		count++;
+	}
+	cout<<count;
+	return 0;
+}

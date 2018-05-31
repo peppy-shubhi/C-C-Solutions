@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+int visited[1000006],count1;
+vector<int> adj[1000006];
+int dfs(int s,int d)
+{
+	int i;
+	if(s==d)
+	count1++;
+	for(i=0;i<adj[s].size();i++)
+	{
+		if(visited[adj[s][i]]==0)
+		visited[adj[s][i]]=1;
+		dfs(adj[s][i],d);		
+		
+	}
+	visited[s]=1;
+	return count1;
+}
+int main()
+
+{
+	int n,e,i,j,a,b,s,d;
+	cin>>n>>e;
+	for(i=0;i<e;i++)
+	{
+		cin>>a>>b;
+		adj[a].push_back(b);
+	}
+	cin>>s>>d;
+	cout<<dfs(s,d);
+}

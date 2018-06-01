@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<int>adj[1000];
+int visited[1000],pred[1000],cc,arr[100];
+void dfs(int s,int d)
+{
+	int i,a,j=0;
+	visited[s]=1;
+	a=d;
+	if(s==a)
+	{
+	//	cc++;
+		while(a!=-1)
+		{
+		arr[j]=a;
+		j++;
+		a=pred[a];
+		}
+		
+		while(j!=0)
+		{
+			cout<<arr[j-1]<<" ";
+			j--;
+			
+		}
+		cout<<endl;
+		
+	}
+	for(i=0;i<adj[s].size();i++)
+	{
+		if(visited[adj[s][i]]==0)
+		{
+			visited[adj[s][i]]=1;
+			pred[adj[s][i]]=s;
+			dfs(adj[s][i],d);			
+			
+		}
+		
+	}
+	//cout<<s<<" "<<d<<"%%%"<<endl;
+	visited[s]=0;
+//	cout<<cc<<"%%"<<endl;
+}
+int main()
+{
+	int n,e,i,a,b,s,d;
+	cin>>n>>e;
+	for(i=0;i<e;i++)
+	{
+		cin>>a>>b;
+		adj[a].push_back(b);
+			
+	}
+	cin>>s>>d;
+	pred[s]=-1;
+	dfs(s,d);
+}

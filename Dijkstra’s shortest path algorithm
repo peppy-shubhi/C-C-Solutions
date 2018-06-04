@@ -1,0 +1,84 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n,e,visited[100005],dis[100005],adj[1000][1000],pred[100005];
+void ans()
+{
+	int u,v,i,path[100005],j,k;
+	for(i=0;i<n;i++)
+	{
+		cout<<"shotest"<<" "<<"path"<<" "<<"of"<<i<<" "<<" is"<<dis[i]<<endl;
+		cout<<"pathlength"<<" "<<"is"<<" ";
+		v=i;
+		j=0;
+		
+		while(v!=0)
+		{
+			path[j]=v;
+			j++;
+			u=pred[v];
+			v=u;
+		}
+		path[j]=0;
+		if(visited[i]==0)
+		cout<<"no"<<" "<<"path"<<endl;
+		else
+		{
+		for(k=j;k>=0;k--)
+		cout<<path[k]<<" ";
+		cout<<endl;
+		}
+	}
+	
+}
+void di(int s)
+{
+	int i,min,cur;
+	for(i=0;i<n;i++)
+	{
+		pred[i]=-1;
+		dis[i]=999999;
+		visited[i]=0;
+	}
+	dis[s]=0;
+	min=99999;
+	while(1)
+	{
+		min=99999;
+		cur=-1;
+		
+	for(i=0;i<n;i++)
+	{
+		if(dis[i]<=min&&visited[i]==0)
+		{
+		min=dis[i];
+		cur=i;
+		}
+	}
+	if(cur==-1)
+	return ;
+	
+	
+	visited[cur]=1;
+	for(i=0;i<n;i++)
+	{
+		if(adj[cur][i]!=0 &&!visited[i]&&(dis[cur]+adj[cur][i])<=dis[i])
+		{
+			dis[i]=dis[cur]+adj[cur][i];
+			pred[i]=cur;
+		}
+	}
+	}
+}
+int main()
+{
+	int i,a,b,l;
+	cin>>n>>e;
+	for(i=0;i<e;i++)
+	{
+		cin>>a>>b>>l;
+		adj[a][b]=l;
+	}
+	di(0);
+	ans();
+	return 0;
+}

@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n,e,visited[100005],dis[100005],adj[1000][1000],pred[100005];
+void ans()
+{
+	int i;
+	for(i=0;i<n;i++)
+	{
+		cout<<pred[i]<<"-"<<i<<" "<<adj[pred[i]][i]<<endl;
+	}
+	
+}
+void pr(int s)
+{
+	int i,min,cur;
+	for(i=0;i<n;i++)
+	{
+		pred[i]=-1;
+		dis[i]=999999;
+		visited[i]=0;
+	}
+	dis[s]=0;
+	while(1)
+	{
+	
+	min=99999;
+	cur=-1;
+	
+	for(i=0;i<n;i++)
+	{
+		if(dis[i]<=min&&visited[i]==0)
+		{
+		min=dis[i];
+		cur=i;
+		}
+	}
+	if(cur==-1)
+	return;
+	visited[cur]=1;
+	for(i=0;i<n;i++)
+	{
+		if(adj[cur][i]&&!visited[i]&&(adj[cur][i])<=dis[i])
+		{
+			dis[i]=adj[cur][i];
+			pred[i]=cur;
+		}
+	}
+}
+}
+int main()
+{
+	int i,a,b,l;
+	cin>>n>>e;
+	for(i=0;i<e;i++)
+	{
+		cin>>a>>b>>l;
+		adj[a][b]=l;
+		adj[b][a]=l;
+	}
+	pr(0);
+	ans();
+	return 0;
+}

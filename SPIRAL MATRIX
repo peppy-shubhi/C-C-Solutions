@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int n,m,i,j,l,r,b,t,dir,a[10000][10000],k;
+	cin>>n>>m;
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<m;j++)
+		{
+			cin>>a[i][j];
+		}
+	}
+	l=0;
+	r=m-1;
+	t=0;
+	b=n-1;
+	dir=0;
+	while(l<=r&&t<=b)
+	{
+		if(dir==0)
+		{
+			for(k=l;k<=r;k++)
+			cout<<a[t][k];
+			t++;
+		}
+		else if(dir==1)
+		{
+			for(k=t;k<=b;k++)
+			cout<<a[k][r];
+			r--;
+		}
+		else if(dir==2)
+		{
+			for(k=r;k>=l;k--)
+			cout<<a[b][k];
+			b--;
+		}
+		else if(dir==3)
+		{
+			for(k=b;k>=t;k--)
+			cout<<a[k][l];
+			l++;
+			
+		}
+		dir=(dir+1)%4;
+		
+	}
+}

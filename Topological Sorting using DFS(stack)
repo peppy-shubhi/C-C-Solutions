@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n,e,visited[100005];
+vector<int>adj[10000];
+stack<int>s;
+void ans(int v)
+{
+//	cout<<v<<"$$$v1"<<endl;
+	int j;
+	visited[v]=1;
+	for(j=0;j<adj[v].size();j++)
+	{
+		if(visited[adj[v][j]]==0)
+		{
+			ans(adj[v][j]);
+		}
+	}
+//	cout<<v<<"$$$"<<endl;
+	s.push(v);
+}
+void topo()
+{
+	int i;
+	for(i=0;i<n;i++)
+	{
+		if(visited[i]==0)
+		ans(i);
+	}
+	while(!s.empty())
+	{
+		cout<<s.top()<<" ";
+		s.pop();
+	}
+}
+int main()
+{
+	int i,a,b;
+	cin>>n>>e;
+	for(i=0;i<e;i++)
+	{
+		cin>>a>>b;
+		adj[a].push_back(b);
+		
+	}
+	topo();
+	return 0;
+}

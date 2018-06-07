@@ -1,0 +1,78 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n,a[100005];
+void RestoreUp(int k,int i)
+{
+	int par;
+	par=i/2;
+	while(a[par]<k)
+	{
+		a[i]=a[par];
+		i=par;
+		par=i/2;
+	}
+	a[i]=k;
+	
+}
+void RestoreDown(int k,int i)
+{
+	int l,r;
+	k=a[1];
+	l=2*i;
+	r=2*i+1;
+	while(r<=n)
+	{
+	
+		if(a[l]<=k&&a[r]<=k)
+		{
+			return;
+		}
+		else if(a[l]>a[r])
+		{
+			a[i]=a[l];
+			i=l;
+		}
+		else{
+			a[i]=a[r];
+			i=r;
+		}
+		l=2*i;
+		r=2*i+1;
+		
+	}
+	if(l==n&&a[l]>a[i])
+	{
+		a[i]=a[l];
+		i=l;
+	}
+	a[i]=k;
+}
+int main()
+{
+	int i,temp,j;
+	cin>>n;
+	a[0]=99999;
+	for(i=1;i<=n;i++)
+	{
+		cin>>a[i];
+		RestoreUp(a[i],i);  //insert
+	}
+	j=n;
+	while(n>=1)
+	{
+		
+		
+		temp=a[n];
+		a[n]=a[1];
+		a[1]=temp;
+		n--;
+		RestoreDown(a[1],1); //delete		
+		
+	}
+	for(i=1;i<=j;i++)
+	cout<<a[i]<<" ";
+	return 0;
+	
+	
+	
+}

@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	
+	int i,n,l,r,count1,count2;
+	char temp;
+	string s;
+	cin>>s;
+	n=s.length();
+	l=0;
+	r=n-1;
+	count1=1;
+	count2=1;
+	             while(l<=r)
+	             {
+	
+		if(!((s[l]>=65&&s[l]<=90)|(s[l]>=97&&s[l]<=122)))
+		{
+			count1=0;
+		l++;
+		}
+		if(!((s[r]>=65&&s[r]<=90)|(s[r]>=97&&s[r]<=122)))
+		{
+			r--;
+			count2=0;
+		}
+	if(count1==1&&count2==1)
+	{
+		temp=s[l];
+		s[l]=s[r];
+		s[r]=temp;
+		l++;
+		r--;
+	}
+	
+	count1=1;
+	count2=1;
+		
+	}
+	cout<<s;
+	
+	return 0;
+}

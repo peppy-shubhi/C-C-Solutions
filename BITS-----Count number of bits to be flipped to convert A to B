@@ -1,0 +1,13 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int n,i,x,a,b;
+	cin>>a>>b;
+	n=a^b;
+	cout<<__builtin_popcount(n);
+	
+
+	return 0;
+	
+}

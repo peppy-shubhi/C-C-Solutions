@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int i,n,po=1,ans;
+	cin>>n;
+	while(n)
+	{
+		po=po*5;
+		if(n&1!=0)
+		ans+=po;
+		n=n>>1;
+	}
+	cout<<ans;
+	
+	return 0;
+}

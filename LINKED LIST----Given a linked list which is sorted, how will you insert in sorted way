@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct node
+{
+	int info;
+	struct node *link;
+};
+struct node *Sort_Insert(struct node *start,int v)
+{
+	struct node *tmp,*p;
+	tmp=(struct node*) malloc(sizeof(tmp));
+	tmp->info=v;
+	if(start==NULL)
+	{
+		
+		start=tmp;
+		tmp->link=NULL;
+		return start;	
+	}
+	if(v<start->info)
+	{
+		tmp->link=start;
+		start=tmp;
+		return start;
+	}
+	p=start;
+	while(p->link!=NULL)
+	{
+		if(p->link->info>=v)
+		{
+			tmp->link=p->link;
+			p->link=tmp;
+			return start;
+			
+			
+		}
+		p=p->link;
+	}
+	tmp->link=NULL;
+	p->link=tmp;
+	return start;
+	
+	
+}
+int main()
+
+{
+	struct node *start=NULL,*p;
+	int n,i,a;
+	cin>>n;
+	for(i=0;i<n;i++)
+	{
+		cin>>a;
+		start=Sort_Insert(start,a);
+	}
+	p=start;
+	while(p!=NULL)
+	{
+		cout<<p->info<<" ";
+		p=p->link;
+		
+	}
+}

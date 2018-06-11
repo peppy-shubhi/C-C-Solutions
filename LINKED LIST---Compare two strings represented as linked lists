@@ -1,0 +1,68 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct node
+{
+	char info;
+	struct node *link;
+};
+struct node *insert(struct node *start,char v)
+{
+	struct node *p,*tmp;
+	tmp=(struct node*)malloc(sizeof(struct node));
+	tmp->info=v;
+	if(start==NULL)
+	{
+		tmp->link=NULL;
+//		cout<<tmp->info<<"%%%111";
+		start=tmp;
+		return start;
+		
+	}
+	p=start;
+	while(p->link!=NULL)
+	p=p->link;
+	p->link=tmp;
+//	cout<<tmp->info<<"%%%";
+	
+	tmp->link=NULL;
+	return start;
+	
+}
+int compare(struct node *start1,struct node *start2)
+{
+	struct node *p,*q;
+	p=start1;
+	q=start2;
+	while(p!=NULL&&q!=NULL)
+	{
+		if((p->info)>(q->info))
+		return 1;
+	  if((q->info)>(p->info))
+	  return -1;
+	  p=p->link;
+	  q=q->link;
+	}
+	if(p==NULL&&q==NULL)
+	return 0;
+	if(p==NULL)
+	return -1;
+	return 1;
+}
+int main()
+{
+	struct node *start1=NULL, *start2=NULL;
+	int a,b,i;
+	char z;
+	cin>>a>>b;
+	for(i=0;i<a;i++)
+	{
+		cin>>z;
+		start1=insert(start1,z);
+	}
+	for(i=0;i<b;i++)
+	{
+		cin>>z;
+		start2=insert(start2,z);
+	}
+	cout<<compare(start1,start2);
+}

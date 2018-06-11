@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct node
+{
+	int info;
+	struct node *link;
+};
+struct node *reverse(struct node *start)
+{
+	struct node *prev,*ptr,*next;
+	prev=NULL;
+	ptr=start;
+	while(ptr!=NULL)
+	{
+		next=ptr->link;
+		ptr->link=prev;
+		prev=ptr;
+		ptr=next;
+	}
+	start=prev;
+	return start;
+}
+
+struct node *insert(struct node *start, int v)
+{
+	struct node *p,*tmp;
+	tmp=(struct node *) malloc(sizeof(struct node));
+	tmp->info=v;
+	if(start==NULL)
+	{
+		tmp->link=NULL;
+		start=tmp;
+		return start;
+		
+	}
+	p=start;
+	while(p->link!=NULL)
+	p=p->link;
+	p->link=tmp;
+	
+	tmp->link=NULL;
+	return start;
+	
+}
+
+
+int main()
+{
+	struct node *start=NULL,*p;
+	int a,b,z,i;
+	
+	cin>>a;
+	for(i=0;i<a;i++)
+	{
+		cin>>z;
+		start=insert(start,z);
+	}
+	start=reverse(start);
+	p=start;
+	while(p!=NULL)
+	{
+		cout<<p->info<<" ";
+		p=p->link;
+	}
+	
+	
+}

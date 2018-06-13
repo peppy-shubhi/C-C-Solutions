@@ -1,0 +1,96 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct node
+{
+	int info;
+	struct node *link;
+};
+void merge(struct node *start1,struct node *start2)
+{
+	struct node *p,*q,*r,*s;
+	p=start1;
+	q=start2;
+		r=p->link;
+		s=q->link;
+		
+	
+	{
+		while(r!=NULL&&s!=NULL)
+		{
+			r=p->link;
+			s=q->link;
+			
+			if(q!=NULL)
+			p->link=q;
+			if(r!=NULL)
+			q->link=r;
+			
+			p=r;
+			q=s;
+			
+		
+		}
+		
+	}
+	if(p==NULL&&q==NULL)
+	return ;
+
+	if(p==NULL)
+	{
+		
+	}
+}
+
+
+struct node *insert(struct node *start, int v)
+{
+	struct node *p,*tmp;
+	tmp=(struct node *) malloc(sizeof(struct node));
+	tmp->info=v;
+	if(start==NULL)
+	{
+		tmp->link=NULL;
+		start=tmp;
+		return start;
+		
+	}
+	p=start;
+	while(p->link!=NULL)
+	p=p->link;
+	p->link=tmp;
+	
+	tmp->link=NULL;
+	return start;
+	
+}
+
+
+int main()
+{
+	struct node *start1=NULL,*p,*start2=NULL,start;
+	int a,b,z,i;
+	
+	cin>>a>>b;
+	for(i=0;i<a;i++)
+	{
+		cin>>z;
+		start1=insert(start1,z);
+	}
+	for(i=0;i<b;i++)
+	{
+		cin>>z;
+		start2=insert(start2,z);
+	}
+	merge(start1,start2);
+	p=start1;
+	while(p!=NULL)
+	{
+		cout<<p->info<<" ";
+		p=p->link;
+	}
+	
+	
+	
+	
+	
+}

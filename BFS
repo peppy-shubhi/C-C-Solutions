@@ -24,12 +24,7 @@ void bfs(int v)
 		}
 			
 		q.pop();
-		if(visited[z]==0)
-		{
-			cout<<z<<" ";
-			visited[z]=1;
-		}
-		
+		cout<<z<<" ";
 		
 	}
 	

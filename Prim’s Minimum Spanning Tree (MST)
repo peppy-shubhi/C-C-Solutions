@@ -39,7 +39,7 @@ void pr(int s)
 	visited[cur]=1;
 	for(i=0;i<n;i++)
 	{
-		if(adj[cur][i]&&!visited[i]&&(adj[cur][i])<=dis[i])
+		if(adj[cur][i]!=0&&!visited[i]&&(adj[cur][i])<=dis[i])
 		{
 			dis[i]=adj[cur][i];
 			pred[i]=cur;

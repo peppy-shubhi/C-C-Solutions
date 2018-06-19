@@ -1,0 +1,64 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct node 
+{
+	struct node *l;
+	struct node* r;
+	int val;
+	node(int key)
+    {
+        val= key;
+       
+        l = r = NULL;
+    }
+};
+void ans(struct node *root)
+{
+	queue<struct node *>q;
+	map<int,struct node *>m;
+	map<struct node *,int>dis;
+	map<int,struct node *>:: iterator it;
+	struct node *z;
+	q.push(root);
+	dis[root]=0;
+	m[0]=root;
+	while(!q.empty())
+	{
+		z=q.front();
+		if(z->l!=NULL)
+		{
+			dis[z->l]=dis[z]-1;
+			m[dis[z->l]]=z->l;
+			q.push(z->l);
+		}
+		if(z->r!=NULL)
+		{
+			dis[z->r]=dis[z]+1;
+			m[dis[z->r]]=z->r;
+			q.push(z->r);
+		}
+		q.pop();
+		
+	}
+	for(it=m.begin();it!=m.end();it++)
+	{
+		cout<<it->second->val<<" ";
+	}
+	
+}
+int main()
+{
+    node *root = new node(20);
+    root->l = new node(8);
+    root->r = new node(22);
+    root->l->l = new node(5);
+    root->l->r = new node(3);
+    root->r->l = new node(4);
+    root->r->r = new node(25);
+    root->l->r->l = new node(10);
+    root->l->r->r = new node(14);
+    
+    ans(root);
+    return 0;
+}

@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace std;
+int find(int low,int high,int a[])
+{
+	int mid;
+	mid=(low+high)/2;
+	if(a[mid]>a[mid+1])
+	return mid;
+	if(a[mid-1]>a[mid])
+	return mid-1;
+	if(a[low]>a[mid])
+	return find(low,mid-1,a);
+	else return find(mid+1,high,a);
+	
+}
+int bs(int low,int high,int a[],int k)
+{
+	int mid=(low+high)/2;
+//	cout<<mid<<"%%"<<endl;
+	while(high>=low)
+	{
+		if(a[mid]==k)
+		return mid;
+		if(a[mid]>k)
+		{
+		//	cout<<"&&"<<endl;
+		return bs(low,mid-1,a,k);
+		}
+		else return bs(mid+1,high,a,k);
+	}
+	
+	return -1;
+	
+}
+int ans(int low,int high,int a[],int k)
+{
+	int pi=find(low,high,a);
+	
+	if(k==a[pi])
+	return pi;
+	if(a[0]<=k)
+	{
+//		cout<<"OOO"<<endl;
+	return bs(low,pi-1,a,k);
+	}
+	else return bs(pi+1,high,a,k);
+	
+}
+
+int main()
+
+{
+	int n,a[100],i,k;
+	cin>>n>>k;
+	for(i=0;i<n;i++)
+	{
+		cin>>a[i];
+	}
+	
+	cout<<ans(0,n-1,a,k);
+}

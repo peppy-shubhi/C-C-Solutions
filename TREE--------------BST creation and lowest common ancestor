@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct node 
+{
+	struct node *l;
+	struct node *r;
+	int val;
+};
+int lca(struct node* ptr,int a, int b)
+{
+	if(a>ptr->val&&b>ptr->val)
+	return lca(ptr->r,a,b);
+	else if(a<ptr->val&&b<ptr->val)
+	return lca(ptr->l,a,b);
+	else return ptr->val;
+}
+struct node *make(struct node *ptr,int a)
+{
+	struct node *tmp;
+	if(ptr==NULL)
+	{
+		tmp=(struct node*)malloc(sizeof(struct node));
+		tmp->val=a;
+		tmp->l=NULL;
+		tmp->r=NULL;
+		ptr=tmp;
+	}
+	else if(ptr->val>a)
+	ptr->l=make(ptr->l,a);
+	else if(ptr->val<a)
+	ptr->r=make(ptr->r,a);
+	return ptr;
+}
+  int main()
+  {
+  	struct node *root=NULL;
+  	int  n,a,b;
+  	cin>>n;
+  	while(n--)
+  	{
+  		cin>>a;
+  		root=make(root,a);
+  		
+	}
+	cin>>a>>b;
+	cout<<lca(root,a,b);
+  	
+  }

@@ -1,0 +1,22 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	int n,a[100005],i,in,ex,exn,ans;
+	cin>>n;
+	for(i=0;i<n;i++)
+	{
+		cin>>a[i];
+	}
+	in=a[0];
+	ex=0;
+	for(i=1;i<n;i++)
+	{
+		exn=(ex>in)?ex:in;
+		in=ex+a[i];
+		ex=exn;
+	}
+	ans=(in>ex)?in:ex;
+	cout<<ans;
+	return 0;
+}

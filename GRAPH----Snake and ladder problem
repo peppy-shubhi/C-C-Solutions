@@ -1,0 +1,84 @@
+#include <bits/stdc++.h>
+using namespace std;
+int vi[50],level[50],jump[50],l[50];
+void reset()
+{
+    int i;
+    for(i=0;i<45;i++)
+    {
+        vi[i]=level[i]=jump[i]=l[i]=0;
+    }
+}
+int main() {
+    int t,n,k,a,b,r;
+    cin>>t;
+    while(t--)
+    {
+        reset();
+        queue<pair<int,int>>q;
+        pair<int,int>p,z;
+        cin>>n;
+        while(n--)
+        {
+            cin>>a>>b;
+                l[a]=1;
+            jump[a]=b;
+        }
+        level[1]=0;
+        vi[1]=1;
+        p=make_pair(1,0);
+        q.push(p);
+        while(!q.empty())
+        {
+        
+            z=q.front();
+            r=z.first;
+          //  cout<<z.first<<" "<<z.second<<endl;
+            if(r==30)
+            {
+                cout<<z.second<<endl;
+                break;
+            }
+            
+                k=1;
+                while(k!=7&&(r+k)<=30)
+                {
+                if(vi[r+k]==0)
+                {
+                    vi[r+k]=1;
+                    
+                    
+                    if(l[r+k]==0)
+                    {
+                        
+                        level[r+k]=level[r]+1;
+                        p=make_pair(r+k,level[r+k]);
+                    q.push(p);
+                    }
+                    else 
+                    {
+                        if(vi[jump[r+k]]==0)
+
+{                        vi[jump[r+k]]=1;
+                        
+                        
+                        level[jump[r+k]]=level[r]+1;
+                        p=make_pair(jump[r+k],level[jump[r+k]]);
+                        q.push(p);
+}
+                    }
+                    
+                }
+                k++;
+                }
+                q.pop();
+                
+            }
+            
+            while(!q.empty())
+            q.pop();
+            
+        }
+        
+    }
+	

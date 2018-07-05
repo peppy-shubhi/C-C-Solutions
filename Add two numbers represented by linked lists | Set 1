@@ -1,0 +1,82 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct node
+{
+	struct node* link;
+	int val;
+};
+struct node * make(struct node* root,int a)
+{
+	struct node *tmp,*p;
+	tmp=(struct node*)malloc(sizeof(struct node));
+	tmp->val=a;
+	if(root==NULL)
+	{
+		tmp->link=NULL;
+		root=tmp;
+		return root;
+	}
+	p=root;
+	while(p->link!=NULL)
+	p=p->link;
+	p->link=tmp;
+	return root;
+}
+struct node* add(struct node* start1,struct node* start2,struct node *re)
+{
+	int ca=0,sum=0;
+	struct node *p1,*p2,*tmp,*pre;
+	p1=start1;
+	p2=start2;
+	while(p1!=NULL||p2!=NULL)
+	{
+	
+	sum= (((p1)?p1->val:0 )+ ((p2)?p2->val:0 )) +ca;
+	ca=sum/10;
+	sum=sum%10;
+	if(p1);
+	p1=p1->link;
+	if(p2)
+	p2=p2->link;
+	tmp=(struct node*)malloc(sizeof(struct node));
+	tmp->val=sum;
+	tmp->link=NULL;
+	if(re==NULL)
+	{
+		re=tmp;
+	
+	}
+	else pre->link=tmp;
+	pre=tmp;
+}
+if(ca>0)
+re=make(re,ca);
+
+return re;
+	
+}
+int main()
+{
+	struct node *start1=NULL,*start2=NULL,*re=NULL,*ptr;
+	int n,m,a;
+	cin>>n>>m;
+	while(n--)
+	{
+		cin>>a;
+		start1=make(start1,a);
+	}
+	while(m--)
+	{
+		cin>>a;
+		start2=make(start2,a);
+		
+	}
+	
+	re=add(start1,start2,re);
+	ptr=re;
+	while(ptr!=NULL)
+	{
+		cout<<ptr->val;
+		ptr=ptr->link;
+	}
+}

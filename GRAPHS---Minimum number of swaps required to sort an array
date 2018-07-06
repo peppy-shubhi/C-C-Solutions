@@ -1,0 +1,27 @@
+int minSwaps(int a[], int n){
+    int i,j,ans=0,vis[n],c;
+    for(i=0;i<n;i++)
+    vis[i]=0;
+    pair<int,int>p[n];
+    for(i=0;i<n;i++)
+    {
+        p[i].first=a[i];
+        p[i].second=i;
+    }
+    sort(p,p+n);
+    for(i=0;i<n;i++)
+    {
+        if(vis[i]==1||p[i].second==i)
+        continue;
+        c=0;
+        j=i;
+        while(vis[j]!=1)
+        {
+            vis[j]=1;
+            j=p[j].second;
+            c++;
+        }
+        ans+=c-1;
+    }
+    return ans;
+}

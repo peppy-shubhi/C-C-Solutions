@@ -1,0 +1,25 @@
+int res;
+int ans(struct Node *root)
+{
+    if(root==NULL)
+    return 0;
+    if(root->left==NULL && root->right==NULL)
+    return root->data;
+    int ls=ans(root->left);
+    int rs=ans(root->right);
+    if(root->left!=NULL&&root->right!=NULL)
+    {
+    res=max(res,ls+rs+root->data);
+    return max(ls,rs)+root->data;
+    }
+    return (root->left=NULL)?root->data+rs:root->data+ls;
+    
+}
+
+int maxPathSum(struct Node *root)
+{
+    res=INT_MIN;
+    ans(root);
+    return res;
+    
+}

@@ -1,0 +1,19 @@
+int ans;
+int hei(Node* node)
+{
+    if(node==NULL)
+    return 0;
+    int l=hei(node->left);
+    int r=hei(node->right);
+    ans=max(l+r+1,ans);
+    return max(l,r)+1;
+}
+int diameter(Node* node)
+{
+    ans=INT_MIN;
+    
+    hei(node);
+   return ans;
+   
+   
+}

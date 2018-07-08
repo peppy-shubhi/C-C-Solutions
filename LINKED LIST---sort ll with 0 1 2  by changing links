@@ -1,0 +1,71 @@
+void sortList(Node *head)
+{
+    Node *ptr1,*ptr2,*ptr3,*ptr,*s1=NULL,*s2=NULL,*s3=NULL;
+    ptr=head;
+    int i=0,j=0,k=0;
+    while(ptr!=NULL)
+    {
+        if(ptr->data==0&&i==0)
+        {
+            ptr1=ptr;
+            s1=ptr1;
+            i++;
+        }
+        else  if(ptr->data==1&&j==0)
+        {
+            ptr2=ptr;
+            s2=ptr2;
+            j++;
+        }
+        else if (ptr->data==2&&k==0)
+        {
+            ptr3=ptr;
+            s3=ptr3;
+            k++;
+        }
+        else if(ptr->data==0)
+        {
+            ptr1->next=ptr;
+            ptr1=ptr1->next;
+            i++;
+        }
+        else if(ptr->data==1)
+        {
+            ptr2->next=ptr;
+            ptr2=ptr2->next;
+            j++;
+        }
+        else
+        {
+            ptr3->next=ptr;
+            ptr3=ptr3->next;
+            k++;
+        }
+        ptr=ptr->next;
+    }
+    if(s1!=NULL)
+    {
+        start=s1;
+        if(s2!=NULL)
+        {
+            ptr1->next=s2;
+            ptr2->next=s3;
+        }
+            else ptr1->next=s3;
+            
+        
+    }
+    else{
+        if(s2!=NULL)
+        {
+            start=s2;
+            ptr2->next=s3;
+        }
+        else start=s3;
+    }
+    if(s3!=NULL)
+    ptr3->next=NULL;
+    
+    
+    
+}

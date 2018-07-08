@@ -1,0 +1,22 @@
+int jump;
+int hei(Node* root)
+{
+    if(root==NULL)
+    return 0;
+    int lh=hei(root->left);
+    int rh=hei(root->right);
+    if((abs(lh-rh)>=2))
+    {
+        jump=0;
+    }
+    return 1+max(lh,rh);
+}
+bool isBalanced(Node *root)
+{
+    jump=1;
+    hei(root);
+    if(jump==0)
+    return 0;
+    return 1;
+    
+}

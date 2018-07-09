@@ -1,0 +1,61 @@
+Node *ans(struct Node*root1,struct Node*root2)
+{
+    Node* p1=root1,* p2=root2,*q,*s;
+    if(p1->data>=p2->data)
+    {
+        q=p2;
+        s=q;
+
+        p2=p2->bottom;
+    }
+    else {
+        q=p1;
+        s=q;
+        p1=p1->bottom;
+    }
+    while(p1!=NULL&&p2!=NULL)
+    {
+        if(p1->data<=p2->data)
+        {
+            q->bottom=p1;
+            q=q->bottom;
+            p1=p1->bottom;
+        }
+        else {
+            q->bottom=p2;
+            q=q->bottom;
+            p2=p2->bottom;
+            
+        }
+    }
+    while(p1!=NULL)
+    {
+        q->bottom=p1;
+        q=q->bottom;
+        p1=p1->bottom;
+    }
+    while(p2!=NULL)
+    {
+        q->bottom=p2;
+        q=q->bottom;
+        p2=p2->bottom;
+    }
+    q->bottom=NULL;
+    return s;
+    
+    
+    
+}
+Node *flatten(Node *root)
+{
+    Node*start=root,*s=root;
+    if(root->next==NULL)
+    return start;
+    while(root->next!=NULL)
+    {
+   s=ans(s,root->next);
+   root=root->next;
+    }
+    start->next=NULL;
+    return s;
+}

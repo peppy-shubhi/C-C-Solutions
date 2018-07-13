@@ -1,0 +1,56 @@
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+ TreeNode *pre,*last,*first,*middle;
+void rec(TreeNode *root)
+{
+    if(root)
+    {
+    rec(root->left);
+    
+    
+        if(pre!=NULL&&root->val<pre->val)
+        {
+            if(first==NULL)
+            {
+                first=pre;
+                middle=root;
+            }
+            else last=root;
+        }
+        pre=root;
+    
+    rec(root->right);
+    }
+    
+}
+vector<int> Solution::recoverTree(TreeNode* A) {
+    pre=NULL;
+    last=NULL;
+    first=NULL;
+    
+    rec(A);
+    vector<int>v;
+    v.clear();
+    if(last==NULL)
+    {
+        v.push_back(middle->val);
+        v.push_back(first->val);
+        
+    }
+    else{
+        v.push_back(last->val);
+        v.push_back(first->val);
+        
+        
+    }
+    
+    return v;
+    
+}

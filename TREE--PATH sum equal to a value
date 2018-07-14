@@ -1,0 +1,27 @@
+int jump,ans;
+void sum(TreeNode* a,int b)
+{
+    if(a==NULL)
+    return;
+    b+=a->val;
+    if(a->left==NULL&&a->right==NULL&&b==ans)
+    {
+        jump=1;
+    }
+    if(a->left!=NULL)
+    sum(a->left,b);
+    if(a->right!=NULL)
+    sum(a->right,b);
+    b-=a->val;
+    
+    
+}
+int Solution::hasPathSum(TreeNode* a, int B) {
+    jump=0,ans=B;
+    sum(a,0);
+    if(jump==0)
+    return 0;
+    return 1;
+    
+    
+}

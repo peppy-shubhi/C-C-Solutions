@@ -1,0 +1,40 @@
+Node * rev(Node *root)
+{
+    Node *pre=NULL,*ptr,*nex=NULL;
+    ptr=root;
+    
+    while(ptr!=NULL)
+    {
+        nex=ptr->next;
+        ptr->next=pre;
+        pre=ptr;
+        ptr=nex;
+       
+    }
+    return pre;
+}
+Node *compute(Node *head)
+{
+    Node *start,*p,*prev;
+    int ma;
+    start=rev(head);
+    p=start;
+    ma=-1;
+    while(p!=NULL)
+    {
+        if(ma<p->data)
+        ma=p->data;
+        if(p->data<ma)
+        {
+            prev->next=p->next;
+        }
+        else prev=p;
+        p=p->next;
+        
+    }
+    start=rev(start);
+    return start;
+    
+    
+    
+}

@@ -1,0 +1,33 @@
+vector<int> Solution::lszero(vector<int> &a) {
+    vector<int>v;
+    map<int,int>m;
+    int i,ma,x,sum=0,len=0,end;
+    x=a.size();
+    for(i=0;i<x;i++)
+    {
+        sum+=a[i];
+        if(a[i]==0&&len==0)
+        {
+        len=1;
+        end=i;
+        }
+        if(sum==0)
+        {
+        len=i+1;
+        end=i;
+        }
+        else if(m.find(sum)!=m.end())
+        {
+            if(i-m[sum]>len)
+           end=i;
+            
+           len=max(len,i-m[sum]);
+           
+        }
+        else
+        m[sum]=i;
+    }
+    for(i=end-len+1;i<=end;i++)
+    v.push_back(a[i]);
+    return v;
+}

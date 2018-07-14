@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int ans(string s,string r,int l,int m)
+{
+    int a[100][100];
+    int i,j;
+    for(i=0;i<=l;i++)
+    {
+        for(j=0;j<=m;j++)
+        {
+            if(i==0||j==0)
+            a[i][j]=0;
+            else if(s[i-1]==r[j-1])
+            a[i][j]=a[i-1][j-1]+1;
+            else a[i][j]=max(a[i][j-1],a[i-1][j]);
+        }
+    }
+    return a[l][m];
+}
+
+
+int main() {
+    int t,x,i;
+string s,r;
+    
+    cin>>t;
+    while(t--)
+    {
+        cin>>s;
+        x=s.length();
+        r=s;
+        reverse(r.begin(),r.end());
+        
+        cout<<x-ans(s,r,x,x)<<endl;
+        
+    }
+
+	return 0;
+}

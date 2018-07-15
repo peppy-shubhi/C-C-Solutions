@@ -1,0 +1,16 @@
+int Solution::maxArr(vector<int> &a) {
+    int i,x,ma1=INT_MIN,mi1=INT_MAX,ma2=INT_MIN,mi2=INT_MAX;
+    x=a.size();
+    for(i=0;i<x;i++)
+    {
+        if((a[i]+i)>ma1)
+        ma1=a[i]+i;
+        if((a[i]+i)<mi1)
+        mi1=a[i]+i;
+        if((a[i]-i)>ma2)
+        ma2=a[i]-i;
+        if((a[i]-i)<mi2)
+        mi2=a[i]-i;
+    }
+    return ((ma1-mi1)>(ma2-mi2))?ma1-mi1:ma2-mi2;
+}

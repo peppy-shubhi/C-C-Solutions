@@ -1,0 +1,29 @@
+bool Solution::hotel(vector<int> &a, vector<int> &d, int k) {
+    sort(a.begin(),a.end());
+    sort(d.begin(),d.end());
+    int i=1,j=0,ma,ans=1;
+    ma=0;
+    while(i<a.size()&&j<d.size())
+    {
+        if(a[i]<d[j])
+        {
+            ans++;
+            i++;
+        }
+        else if(d[j]<a[i])
+        {
+            ans--;
+            j++;
+        }
+        else {
+            i++;
+            j++;
+            
+        }
+        ma=max(ans,ma);
+    }
+    if(ma<=k)
+    return 1;
+    return 0;
+    
+}

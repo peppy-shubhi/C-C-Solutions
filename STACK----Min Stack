@@ -1,0 +1,54 @@
+
+stack<int>s;
+    int mi;
+    
+MinStack::MinStack() {
+    s.empty();
+}
+
+void MinStack::push(int x) {
+    if(s.empty())
+    {
+        mi=x;
+        s.push(x);
+        return;
+    }
+    if(x<mi)
+    {
+        mi=x;
+        s.push(2*x-mi);
+    }
+    
+    else s.push(x);
+}
+
+void MinStack::pop() {
+    if(!s.empty())
+    {
+    int y=s.top();
+    s.pop();
+    if(y<mi)
+    {
+        mi=(2*mi-y);
+    }
+    }
+    
+}
+
+int MinStack::top() {
+    if(s.empty())
+    return -1;
+    if(s.top()<mi)
+    {
+        return mi;
+    }
+    return s.top();
+}
+
+int MinStack::getMin() {
+    if(s.empty())
+    return -1;
+    return mi;
+    
+}
+

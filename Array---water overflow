@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+int l[1000006];
+float con[1000006];
+
+int main() {
+	
+	int t,i,j,z,i1;
+	float d,k;
+	cin>>t;
+	while(t--)
+	{
+	    cin>>k;
+	    for(i=0;i<=1000000;i++)
+	    {
+	        con[i]=0;
+	        l[i]=0;
+	    }
+	    queue<int>q;
+	    q.push(1);
+	    l[1]=1;
+	    con[1]=k;
+	    while(!q.empty())
+	    {
+	        z=q.front();
+	        if(con[z]>1)
+	        {
+	            d=con[z]-1;
+	            con[z]=1.0f;
+	            
+	            l[z+l[z]]=l[z]+1;
+	            l[z+l[z]+1]=l[z]+1;
+	            q.push(z+l[z]);
+	            q.push(z+l[z]+1);
+	            con[z+l[z]]+=d/2;
+	            con[z+l[z]+1]+=d/2;
+	        }
+	       // cout<<con[z]<<" "<<z<<endl;
+	        q.pop();
+	    }
+	    cin>>i1>>j;
+	    if(i1>1)
+	    cout<<con[((i1*(i1-1))/2)+j]<<endl;
+	    else cout<<con[1]<<endl;
+	    
+	        
+	}
+	return 0;
+}

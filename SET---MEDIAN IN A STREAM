@@ -1,0 +1,57 @@
+using namespace std;
+
+int main() {
+    multiset<int>s;
+    int n,x,c=1,i,a[100009];
+    cin>>n;
+    multiset<int>::iterator l,r;
+    cin>>x;
+    a[0]=x;
+    cout<<a[0]<<endl;
+    s.insert(a[0]);
+    l=r=s.begin();
+   for(i=1;i<n;i++)
+   {
+       
+       cin>>a[i];
+       c++;
+       s.insert(a[i]);
+       
+       
+       if(c%2==0)
+       {
+           if(a[i]>=(*l))
+           {
+               r++;
+               cout<<floor(((*l)+(*r))/2.0)<<endl;
+           }
+           else
+           {
+               l--;
+               cout<<floor(((*l)+(*r))/2.0)<<endl;
+           }
+       }
+       else
+       {
+           if(a[i]>=(*r))
+           {
+               l++;
+               cout<<(*r)<<endl;
+           }
+           else if(a[i]<(*l))
+           {
+               r--;
+               cout<<(*r)<<endl;
+           }
+           else 
+           {
+               l++;
+               r--;
+               cout<<(*r)<<endl;
+           }
+           
+       }
+   }
+	
+	return 0;
+}

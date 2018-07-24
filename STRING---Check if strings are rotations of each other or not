@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    string s,r,tmp;
+    char *p;
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    cin>>s>>r;
+	    if(s.length()!=r.length())
+	    {
+	        cout<<0<<endl;
+	        continue;
+	    }
+	    tmp=s+s;
+	    if(tmp.find(r)!=string::npos)
+	  	    cout<<1<<endl;
+	    else cout<<0<<endl;
+	}
+	return 0;
+}

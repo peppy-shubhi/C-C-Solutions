@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t,k,n,a[104],ans,i,mi,ma,ad,sub;
+	cin>>t;
+	while(t--)
+	{
+	    cin>>k>>n;
+	    
+	    for(i=0;i<n;i++)
+	    {
+	        cin>>a[i];
+	    }
+	    if(n==1)
+	    {
+	        cout<<0<<endl;
+	        continue;
+	    }
+	    sort(a,a+n);
+	    ans=a[n-1]-a[0];
+	    mi=a[0]+k;
+	    ma=a[n-1]-k;
+	    if(mi>ma)
+	    swap(mi,ma);
+	    for(i=1;i<n-1;i++)
+	    {
+	        ad=a[i]+k;
+	        sub=a[i]-k;
+	        if(ad<=ma||sub>=mi)
+	        continue;
+	        if(ma-sub<=ad-mi)
+	        mi=sub;
+	        else ma=ad;
+	    }
+	    	        
+
+	    cout<<min(ans,ma-mi)<<endl;
+	}
+	return 0;
+}

@@ -1,0 +1,65 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t,n,m,a[1000005],ans,sum1,sum2,l,r,i,b[100005],x,c;
+    cin>>t;
+    while(t--)
+    {
+        c=0;
+        ans=0;
+        sum1=0;
+        sum2=0;
+        cin>>n>>m;
+        for(i=0;i<n;i++)
+        {
+            cin>>a[i];
+        }
+        for(i=0;i<m;i++)
+        {
+            cin>>b[i];
+        }
+        a[n]=1000000000;
+        b[m]=1000000000;
+        
+        l=0;
+        r=0;
+        while(l<=n&&r<=m)
+        {
+            if(a[l]<b[r])
+            {
+                sum1+=a[l];
+                l++;
+            }
+            else if(b[r]<a[l])
+            {
+                sum2+=b[r];
+                r++;
+            }
+            else {
+                if(a[l]==1000000000&&b[r]==1000000000)
+                {
+                    break;
+                }
+                x=a[l];
+                while(a[l]==x&&l<n)
+                {
+                    sum1+=x;
+                    l++;
+                }
+                while(b[r]==x&&r<m)
+                {
+                    sum2+=x;
+                    r++;
+                }
+                ans+=(sum1>sum2)?sum1:sum2;
+                sum1=0;
+                sum2=0;
+            }
+        }
+        
+        ans+=(sum1>sum2)?sum1:sum2;
+        cout<<ans<<endl;
+            
+        }
+    }

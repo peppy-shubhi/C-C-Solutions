@@ -1,0 +1,32 @@
+
+void fun(int v,vector<int>adj[],int vis[],stack<int>&st)
+{
+    vis[v]=1;
+    int i;
+    for(i=0;i<adj[v].size();i++)
+    {
+        if(vis[adj[v][i]]==0)
+        fun(adj[v][i],adj,vis,st);
+    }
+    st.push(v);
+}
+int* topoSort(int v, vector<int> adj[])
+{
+    static int a[55];
+    int i;
+    stack<int>st;
+    int vis[v]={};
+    
+    
+    for(i=0;i<v;i++)
+    {
+        if(!vis[i])
+        fun(i,adj,vis,st);
+    }
+    for(i=0;i<v;i++)
+    {
+        a[i]=st.top();
+        st.pop();
+    }
+    return a;
+}

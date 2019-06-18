@@ -1,0 +1,64 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+int main() {
+    int t,n,m,a[25][25],i,j,vis[25][25],x,y,u,v,l[25][25];
+    cin>>t;
+    while(t--)
+    {
+        for(i=0;i<=20;i++)
+        {
+            for(j=0;j<=20;j++)
+            vis[i][j]=0;
+        }
+        cin>>n>>m;
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<m;j++)
+            {
+                cin>>a[i][j];
+            }
+        }
+        cin>>x>>y;
+        queue<pair<int,int>>q;
+        pair<int,int>z;
+        q.push(make_pair(0,0));
+        l[0][0]=0;
+        l[x][y]=100;
+        
+        while(!q.empty())
+        {
+            z=q.front();
+            u=z.first;
+            v=z.second;
+            for(i=u-1;i<=u+1;i++)
+            {
+                for(j=v-1;j<=v+1;j++)
+                {
+                    if(i>=0&&i<n&&j>=0&&j<m&&abs(u-i)+abs(v-j)==1)
+                    {
+                        if(i==x&&j==y&&a[x][y]==1)
+                        l[x][y]=min(l[u][v]+1,l[x][y]);
+                        else if(vis[i][j]==0&&a[i][j]==1)
+                        {
+                            vis[i][j]=1;
+                            q.push(make_pair(i,j));
+                            l[i][j]=l[u][v]+1;
+                        }
+                    }
+                }
+            }
+            q.pop();
+            
+    
+        }
+        if(l[x][y]!=100&&a[0][0]==1)
+        cout<<l[x][y]<<endl;
+        else if(a[x][y]==1&&x==0&&y==0)
+        cout<<0<<endl;
+        else cout<<-1<<endl;
+    }
+	
+	return 0;
+}

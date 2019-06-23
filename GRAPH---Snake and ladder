@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int t,n,move[35],vis[35],l,r,i,a,b;
+    cin>>t;
+    while(t--)
+    {
+        pair<int,int>z;
+        for(i=0;i<=30;i++)
+        {
+            move[i]=-1;
+            vis[i]=0;
+        }
+        queue<pair<int,int>>q;
+        
+        cin>>n;
+        for(i=0;i<n;i++)
+        {
+            cin>>a>>b;
+            move[a]=b;
+        }
+        q.push(make_pair(1,0));
+        while(!q.empty())
+        {
+            z=q.front();
+            l=z.first;
+            r=z.second;
+            
+            if(l==30)
+            break;
+            
+            for(i=l+1;i<=l+6&&i<=30;i++)
+            {
+                if(vis[i]==0)
+                {
+                if(move[i]==-1)
+                {
+                    q.push(make_pair(i,r+1));
+                }
+                else{
+                    q.push(make_pair(move[i],r+1));
+                }
+                vis[i]=1;
+                }
+                
+            }
+            q.pop();
+        }
+        cout<<r<<endl;
+    }
+	
+	return 0;
+}

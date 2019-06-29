@@ -1,0 +1,27 @@
+int pre;
+bool fun(Node* root)
+{
+    int l,r;
+    if(root==NULL)
+    return 1;
+    l=fun(root->left);
+    if(root->data<pre)
+    return 0;
+    pre=root->data;
+    //cout<<pre<<endl;
+    
+    r=fun(root->right);
+    if(l&&r)
+    return 1;
+    return 0;
+    
+    
+    
+    
+}
+
+bool isBST(Node* root) {
+     pre=-1;
+    return fun(root);
+    
+}

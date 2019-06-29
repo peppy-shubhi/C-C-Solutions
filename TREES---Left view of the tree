@@ -1,0 +1,25 @@
+void leftView(Node *root)
+{ 
+    struct Node* l;
+    int r,i;
+   queue<pair<struct Node*,int>>q;
+   pair<struct Node*,int>z;
+   q.push(make_pair(root,0));
+   i=0;
+   while(!q.empty())
+   {
+       z=q.front();
+       l=z.first;
+       r=z.second;
+       if(r==i)
+       {
+           cout<<l->data<<" ";
+           i++;
+       }
+       if(l->left!=NULL)
+       q.push(make_pair(l->left,r+1));
+       if(l->right!=NULL)
+       q.push(make_pair(l->right,r+1));
+       q.pop();
+   }
+}

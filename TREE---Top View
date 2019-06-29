@@ -1,74 +1,30 @@
-#include<bits/stdc++.h>
-using namespace std;
-
-struct node 
+void topView(Node *root)
 {
-	struct node *l;
-	struct node* r;
-	int val;
-	node(int key)
-    {
-        val= key;
-       
-        l = r = NULL;
-    }
-};
-void ans(struct node *root)
-{
-	queue<struct node *>q;
-	map<int,int>vi;
-	map<int,struct node *>m;
-	map<struct node *,int>dis;
-	map<int,struct node *>:: iterator it;
-	struct node *z;
-	q.push(root);
-	dis[root]=0;
-	m[0]=root;
-	vi[0]=1;
-	while(!q.empty())
-	{
-		z=q.front();
-		if(z->l!=NULL)
-		{
-			dis[z->l]=dis[z]-1;
-			if(vi[dis[z->l]]==0)
-			{
-				vi[dis[z->l]]=1;
-			m[dis[z->l]]=z->l;
-			}
-			q.push(z->l);
-		}
-		if(z->r!=NULL)
-		{
-			dis[z->r]=dis[z]+1;
-			if(vi[dis[z->r]]==0)
-			{
-				vi[dis[z->r]]=1;
-			m[dis[z->r]]=z->r;
-			}
-			q.push(z->r);
-		}
-		q.pop();
-		
-	}
-	for(it=m.begin();it!=m.end();it++)
-	{
-		cout<<it->second->val<<" ";
-	}
-	
-}
-int main()
-{
-    node *root = new node(20);
-    root->l = new node(8);
-    root->r = new node(22);
-    root->l->l = new node(5);
-    root->l->r = new node(3);
-    root->r->l = new node(4);
-    root->r->r = new node(25);
-    root->l->r->l = new node(10);
-    root->l->r->r = new node(14);
+    Node* l;
+    int r;
+    pair<Node*,int>z;
+    map<int,int>v;
     
-    ans(root);
-    return 0;
+   queue<pair<Node*,int>>q;
+   q.push(make_pair(root,0));
+   while(!q.empty())
+   {
+       z=q.front();
+       l=z.first;
+       r=z.second;
+       if(v[r]==0)
+       {
+       v[r]=1;
+       cout<<l->data<<" ";
+       }
+       if(l->left!=NULL)
+       
+       q.push(make_pair(l->left,r-1));
+       if(l->right!=NULL)
+       q.push(make_pair(l->right,r+1));
+       q.pop();
+       
+   }
+   
 }
+

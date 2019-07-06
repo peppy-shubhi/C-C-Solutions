@@ -1,0 +1,16 @@
+int hei(Node* root)
+{
+    if(root==NULL)
+    return 0;
+    return 1+max(hei(root->left),hei(root->right));
+}
+int diameter(Node* root)
+{
+    if(root==NULL)
+    return 0;
+    int l,r;
+    l=hei(root->left);
+    r=hei(root->right);
+    return max(1+l+r,max(diameter(root->left),diameter(root->right)));
+   
+}

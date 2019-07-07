@@ -1,0 +1,27 @@
+int ans;
+int sum(Node* root)
+{
+    if(root==NULL)
+    return 0;
+    if(root->left==NULL&&root->right==NULL)
+    return root->data;
+    int l,r,m;
+    l=sum(root->left);
+    r=sum(root->right);
+    if(root->left!=NULL&&root->right!=NULL)
+    {
+    m=max(l,r)+root->data;
+    ans=max(ans,l+r+root->data);
+    }
+    else m=root->left?l+root->data:r+root->data;
+    
+    return m;
+}
+int maxPathSum(struct Node *root)
+{
+    ans=-100000;
+    sum(root);
+    return ans;
+    
+
+}

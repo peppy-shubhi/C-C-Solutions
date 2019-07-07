@@ -1,0 +1,14 @@
+void fun(Node* root,Node*l,Node*r)
+{
+    if(l==NULL&&r==NULL)
+    return ;
+    root->left=r;
+    root->right=l;
+    fun(l,l->left,l->right);
+    fun(r,r->left,r->right);
+}
+void mirror(Node* node) 
+{
+    fun(node,node->left,node->right);
+     
+}
